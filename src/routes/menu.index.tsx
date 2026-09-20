@@ -1,0 +1,15 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { DishCard, PageFrame, PageHero } from "@/components/sv-grand";
+import { dishes, images } from "@/lib/sv-grand-data";
+
+export const Route = createFileRoute("/menu/")({ head: () => ({ meta: [{ title: "Dining Menu — SV Grand" }, { name: "description", content: "Explore Chef Narayana’s extensive vegetarian and non-vegetarian menus at SV Grand." }, { property: "og:title", content: "Dining Menu — SV Grand" }, { property: "og:description", content: "Vegetarian and non-vegetarian Indian dining by Chef Narayana." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: MenuPage });
+
+function MenuPage() {
+  const [kind, setKind] = useState<"All" | "Vegetarian" | "Non-Vegetarian">("All");
+  const [course, setCourse] = useState("All courses");
+  const shown = useMemo(() => dishes.filter((dish) => (kind === "All" || dish.kind === kind) && (course === "All courses" || dish.course === course)), [kind, course]);
+  const courses = ["All courses", "Small Plates", "From the Tandoor", "Mains", "Rice & Breads", "Desserts"];
+  return <PageFrame><PageHero eyebrow="Chef Narayana presents" title={<>The grand<br/><span className="text-gold-soft">Indian table.</span></>} copy="A generous collection spanning smoke, spice, coast and comfort. Select any dish to discover its story." image={images.feastImage}/><section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-28"><div className="mx-auto max-w-[1280px]"><div className="menu-filter sticky top-20 z-30 -mx-6 flex flex-col gap-4 border-y border-border bg-background/95 px-6 py-5 shadow-gold backdrop-blur-xl sm:mx-0 sm:flex-row sm:items-center sm:justify-between"><div><p className="mb-3 text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">Browse by preference</p><div className="flex flex-wrap gap-2" role="group" aria-label="Dietary menu filter">{(["All", "Vegetarian", "Non-Vegetarian"] as const).map((value) => <Button key={value} variant={kind === value ? "luxury" : "luxuryOutline"} size="sm" onClick={() => setKind(value)} aria-pressed={kind === value}><span className={`mr-2 size-2 rounded-full ${value === "Vegetarian" ? "bg-veg" : value === "Non-Vegetarian" ? "bg-nonveg" : "bg-primary"}`} />{value}</Button>)}</div></div><select aria-label="Filter by course" value={course} onChange={(event) => setCourse(event.target.value)} className="h-10 border border-input bg-card px-4 text-xs text-foreground outline-none focus:border-primary">{courses.map((value) => <option key={value}>{value}</option>)}</select></div><p className="mt-10 text-[0.58rem] uppercase tracking-[0.2em] text-muted-foreground" aria-live="polite">{shown.length} dishes · click any dish for full details</p><div className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">{shown.map((dish, index) => <DishCard key={dish.slug} dish={dish} index={index}/>)}</div></div></section></PageFrame>;
+}
