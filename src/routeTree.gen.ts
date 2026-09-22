@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as ChefRouteImport } from './routes/chef'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as ReserveRouteImport } from './routes/reserve'
 import { Route as MenuIndexRouteImport } from './routes/menu.index'
@@ -21,6 +23,11 @@ import { Route as MenuSlugRouteImport } from './routes/menu.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChefRoute = ChefRouteImport.update({
@@ -36,6 +43,11 @@ const ContactRoute = ContactRouteImport.update({
 const ExperienceRoute = ExperienceRouteImport.update({
   id: '/experience',
   path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenuRoute = MenuRouteImport.update({
@@ -61,9 +73,11 @@ const MenuSlugRoute = MenuSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/chef': typeof ChefRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRouteWithChildren
   '/reserve': typeof ReserveRoute
   '/menu/$slug': typeof MenuSlugRoute
@@ -71,9 +85,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/chef': typeof ChefRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/gallery': typeof GalleryRoute
   '/reserve': typeof ReserveRoute
   '/menu/$slug': typeof MenuSlugRoute
   '/menu': typeof MenuIndexRoute
@@ -81,9 +97,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/chef': typeof ChefRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRouteWithChildren
   '/reserve': typeof ReserveRoute
   '/menu/$slug': typeof MenuSlugRoute
@@ -93,9 +111,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/chef'
     | '/contact'
     | '/experience'
+    | '/gallery'
     | '/menu'
     | '/reserve'
     | '/menu/$slug'
@@ -103,18 +123,22 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/chef'
     | '/contact'
     | '/experience'
+    | '/gallery'
     | '/reserve'
     | '/menu/$slug'
     | '/menu'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/chef'
     | '/contact'
     | '/experience'
+    | '/gallery'
     | '/menu'
     | '/reserve'
     | '/menu/$slug'
@@ -123,9 +147,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   ChefRoute: typeof ChefRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
+  GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRouteWithChildren
   ReserveRoute: typeof ReserveRoute
 }
@@ -137,6 +163,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chef': {
@@ -158,6 +191,13 @@ declare module '@tanstack/react-router' {
       path: '/experience'
       fullPath: '/experience'
       preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/menu': {
@@ -205,9 +245,11 @@ const MenuRouteWithChildren = MenuRoute._addFileChildren(MenuRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   ChefRoute: ChefRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
+  GalleryRoute: GalleryRoute,
   MenuRoute: MenuRouteWithChildren,
   ReserveRoute: ReserveRoute,
 }

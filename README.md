@@ -1,6 +1,6 @@
 # Gilded Plate
 
-Build a premium 3D Veg & Non-Veg hotel website that feels 100% human-designed, not AI/template-like. Add cinematic intro video, realistic images, smooth scroll/parallax, subtle 3D effects, elegant hover/micro-interactions, black-gold luxury UI, and responsive polished design.
+Build a premium 3D vegetarian and non-vegetarian luxury restaurant website for AUREVIA that feels 100% human-designed, not AI/template-like. Add cinematic intro video, realistic images, smooth scroll/parallax, subtle 3D effects, elegant hover/micro-interactions, black-gold luxury UI, and responsive polished design.
 
 This project was built with [Lovable](https://lovable.dev).
 

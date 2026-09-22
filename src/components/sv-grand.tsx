@@ -12,25 +12,25 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-foreground/10 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link to="/" className="group flex items-center gap-3" aria-label="SV Grand home">
-          <span className="flex size-9 items-center justify-center border border-primary/60 font-display text-lg text-primary transition-transform duration-500 group-hover:rotate-45">S</span>
-          <span><strong className="block font-display text-lg font-normal text-ivory">SV GRAND</strong><small className="block text-[0.48rem] uppercase tracking-[0.26em] text-muted-foreground">Hotel · Bengaluru</small></span>
+        <Link to="/" className="group flex items-center gap-3" aria-label="AUREVIA home">
+          <span className="flex size-9 items-center justify-center border border-primary/60 font-display text-lg text-primary transition-transform duration-500 group-hover:rotate-45">A</span>
+          <span><strong className="block font-display text-lg font-normal text-ivory">AUREVIA</strong><small className="block text-[0.48rem] uppercase tracking-[0.26em] text-muted-foreground">Luxury restaurant · Bengaluru</small></span>
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => <Link key={item.to} to={item.to} className="nav-link text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}
         </nav>
         <div className="flex items-center gap-2">
-          <Button variant="luxuryOutline" size="luxury" asChild className="hidden sm:inline-flex"><Link to="/reserve">Reserve</Link></Button>
+          <Button variant="luxuryOutline" size="luxury" asChild className="hidden sm:inline-flex"><Link to="/reserve">Reserve a Table</Link></Button>
           <Button variant="ghost" size="icon" onClick={() => setOpen((value) => !value)} className="text-ivory lg:hidden" aria-label={open ? "Close menu" : "Open menu"}>{open ? <X /> : <Menu />}</Button>
         </div>
       </div>
-      {open && <nav className="border-t border-border bg-background px-6 py-6 lg:hidden" aria-label="Mobile navigation">{navItems.map((item) => <Link key={item.to} to={item.to} className="block border-b border-border py-4 font-display text-2xl text-ivory">{item.label}</Link>)}<Button variant="luxury" asChild className="mt-6 w-full"><Link to="/reserve">Reserve a table</Link></Button></nav>}
+      {open && <nav className="border-t border-border bg-background px-6 py-6 lg:hidden" aria-label="Mobile navigation">{navItems.map((item) => <Link key={item.to} to={item.to} className="block border-b border-border py-4 font-display text-2xl text-ivory">{item.label}</Link>)}<Button variant="luxury" asChild className="mt-6 w-full"><Link to="/reserve">Reserve a Table</Link></Button></nav>}
     </header>
   );
 }
 
 export function SiteFooter() {
-  return <footer className="border-t border-border bg-card px-6 py-12 sm:px-10 lg:px-16"><div className="mx-auto grid max-w-[1280px] gap-10 md:grid-cols-[1.2fr_1fr_1fr]"><div><p className="font-display text-3xl text-ivory">SV GRAND</p><p className="mt-3 max-w-sm text-xs leading-6 text-muted-foreground">Considered stays and fire-led Indian dining in the heart of Bengaluru.</p></div><div><p className="eyebrow">Visit</p><p className="mt-4 text-xs leading-6 text-muted-foreground">12, Museum Road · Bengaluru<br/>+91 80 4123 8800<br/>hello@svgrand.in</p></div><div><p className="eyebrow">Explore</p><div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">{navItems.slice(1).map((item) => <Link key={item.to} to={item.to} className="text-[0.58rem] uppercase tracking-[0.15em] text-muted-foreground hover:text-primary">{item.label}</Link>)}</div></div></div><div className="mx-auto mt-10 flex max-w-[1280px] justify-between border-t border-border pt-6 text-[0.52rem] uppercase tracking-[0.15em] text-muted-foreground"><span>© 2026 SV Grand</span><span>Hospitality, considered</span></div></footer>;
+  return <footer className="border-t border-border bg-card px-6 py-12 sm:px-10 lg:px-16"><div className="mx-auto grid max-w-[1280px] gap-10 md:grid-cols-[1.2fr_1fr_1fr]"><div><p className="font-display text-3xl text-ivory">AUREVIA</p><p className="mt-3 max-w-sm text-xs leading-6 text-muted-foreground">A standalone fine-dining restaurant where Indian kitchens meet a modern point of view.</p></div><div><p className="eyebrow">Visit</p><p className="mt-4 text-xs leading-6 text-muted-foreground">12, Museum Road · Bengaluru<br/>+91 80 4123 8800<br/>hello@aurevia.in</p></div><div><p className="eyebrow">Explore</p><div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">{navItems.slice(1).map((item) => <Link key={item.to} to={item.to} className="text-[0.58rem] uppercase tracking-[0.15em] text-muted-foreground hover:text-primary">{item.label}</Link>)}</div></div></div><div className="mx-auto mt-10 flex max-w-[1280px] justify-between border-t border-border pt-6 text-[0.52rem] uppercase tracking-[0.15em] text-muted-foreground"><span>© 2026 AUREVIA</span><span>Fine dining, considered</span></div></footer>;
 }
 
 export function PageFrame({ children }: { children: ReactNode }) { return <div className="page-enter min-h-screen bg-background pt-20 text-foreground"><SiteHeader />{children}<SiteFooter /></div>; }

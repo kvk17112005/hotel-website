@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { DishCard, PageFrame, PageHero } from "@/components/sv-grand";
 import { dishes, images } from "@/lib/sv-grand-data";
 
-export const Route = createFileRoute("/menu/")({ head: () => ({ meta: [{ title: "Dining Menu — SV Grand" }, { name: "description", content: "Explore Chef Narayana’s extensive vegetarian and non-vegetarian menus at SV Grand." }, { property: "og:title", content: "Dining Menu — SV Grand" }, { property: "og:description", content: "Vegetarian and non-vegetarian Indian dining by Chef Narayana." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: MenuPage });
+export const Route = createFileRoute("/menu/")({ head: () => ({ meta: [{ title: "À la carte Menu — AUREVIA" }, { name: "description", content: "Explore Chef Narayana’s extensive vegetarian and non-vegetarian menu at AUREVIA." }, { property: "og:title", content: "À la carte Menu — AUREVIA" }, { property: "og:description", content: "Vegetarian and non-vegetarian Indian fine dining by Chef Narayana." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: MenuPage });
 
 function MenuPage() {
   const [kind, setKind] = useState<"All" | "Vegetarian" | "Non-Vegetarian">("All");

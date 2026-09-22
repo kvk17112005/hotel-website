@@ -6,7 +6,7 @@ import { dishes } from "@/lib/sv-grand-data";
 
 export const Route = createFileRoute("/menu/$slug")({
   loader: ({ params }) => { const dish = dishes.find((item) => item.slug === params.slug); if (!dish) throw notFound(); return { dish }; },
-  head: ({ loaderData }) => ({ meta: [{ title: loaderData ? `${loaderData.dish.name} — SV Grand` : "Dish not found — SV Grand" }, { name: "description", content: loaderData?.dish.story ?? "Explore the menu at SV Grand." }, { property: "og:title", content: loaderData ? `${loaderData.dish.name} — SV Grand` : "SV Grand Menu" }, { property: "og:description", content: loaderData?.dish.note ?? "Chef Narayana’s Indian dining menu." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
+  head: ({ loaderData }) => ({ meta: [{ title: loaderData ? `${loaderData.dish.name} — AUREVIA` : "Dish not found — AUREVIA" }, { name: "description", content: loaderData?.dish.story ?? "Explore the menu at AUREVIA." }, { property: "og:title", content: loaderData ? `${loaderData.dish.name} — AUREVIA` : "AUREVIA Menu" }, { property: "og:description", content: loaderData?.dish.note ?? "Chef Narayana’s Indian dining menu." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   notFoundComponent: () => <PageFrame><main className="flex min-h-[70svh] flex-col items-center justify-center px-6 text-center"><Eyebrow>Not on tonight’s menu</Eyebrow><h1 className="mt-6 font-display text-5xl text-ivory">This dish has moved on.</h1><Button variant="luxury" asChild className="mt-8"><Link to="/menu">Return to the menu</Link></Button></main></PageFrame>,
   component: DishPage,
 });
